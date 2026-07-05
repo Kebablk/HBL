@@ -1,9 +1,9 @@
-# Скрываем конфиг с токенами
-config.js
-
-# Системные файлы
+# Системные
 .DS_Store
 Thumbs.db
+
+# Vercel
+.vercel
 
 # IDE
 .vscode/
@@ -11,4 +11,3 @@ Thumbs.db
 
 # Логи
 *.log
-npm-debug.log*

@@ -32,7 +32,6 @@
         position: relative;
       }
 
-      /* ===== ФОН С ГРАДИЕНТОМ ===== */
       .bg-gradient {
         position: fixed;
         top: 0;
@@ -60,7 +59,6 @@
           #0a0a0f;
       }
 
-      /* ===== ПАРЯЩИЕ ЧАСТИЦЫ ===== */
       .particles {
         position: fixed;
         top: 0;
@@ -158,7 +156,6 @@
         }
       }
 
-      /* ===== ОСНОВНАЯ КАРТОЧКА (стекло) ===== */
       .invite-card {
         max-width: 390px;
         width: 100%;
@@ -228,7 +225,6 @@
         animation: none;
       }
 
-      /* ===== БЭДЖ ===== */
       .badge {
         display: inline-block;
         padding: 4px 16px;
@@ -251,7 +247,6 @@
         color: #818cf8;
       }
 
-      /* ===== ИМЯ ===== */
       .neon-name {
         font-family: "Inter", sans-serif;
         font-size: 48px;
@@ -286,7 +281,6 @@
         margin-bottom: 20px;
       }
 
-      /* ===== СЧЕТЧИК ===== */
       .countdown {
         background: rgba(255, 255, 255, 0.03);
         border-radius: 100px;
@@ -316,7 +310,6 @@
         letter-spacing: 1px;
       }
 
-      /* ===== ДЕТАЛИ ===== */
       .details {
         margin: 16px 0 18px;
         display: flex;
@@ -354,7 +347,6 @@
         font-weight: 500;
       }
 
-      /* ===== ПОЛЕ ДЛЯ ИМЕНИ ===== */
       .name-input-wrapper {
         margin: 10px 0 16px;
       }
@@ -399,7 +391,6 @@
         box-shadow: 0 0 40px rgba(99, 102, 241, 0.05);
       }
 
-      /* ===== СЕРДЦЕ ===== */
       .heart-container {
         margin: 6px auto 14px;
         display: flex;
@@ -435,7 +426,6 @@
         font-weight: 300;
       }
 
-      /* ===== КНОПКА ===== */
       .btn-magic {
         display: inline-block;
         padding: 16px 44px;
@@ -499,7 +489,6 @@
         transform: none !important;
       }
 
-      /* ===== ЛЕНДИНГ ===== */
       .landing-page {
         position: fixed;
         top: 0;
@@ -646,7 +635,6 @@
         color: rgba(255, 255, 255, 0.3);
       }
 
-      /* ===== КОНФЕТТИ ===== */
       .confetti-container {
         position: fixed;
         top: 0;
@@ -679,7 +667,6 @@
         }
       }
 
-      /* ===== ПОДПИСЬ ===== */
       .footer-text {
         margin-top: 18px;
         font-size: 10px;
@@ -688,7 +675,6 @@
         font-weight: 300;
       }
 
-      /* ===== АДАПТИВ ===== */
       @media (max-width: 420px) {
         .invite-card {
           padding: 28px 16px 24px;
@@ -733,10 +719,8 @@
     </style>
   </head>
   <body>
-    <!-- ===== ФОН ===== -->
     <div class="bg-gradient"></div>
 
-    <!-- ===== ПАРЯЩИЕ ЧАСТИЦЫ ===== -->
     <div class="particles">
       <div class="particle"></div>
       <div class="particle"></div>
@@ -748,10 +732,8 @@
       <div class="particle"></div>
     </div>
 
-    <!-- ===== КОНФЕТТИ ===== -->
     <div class="confetti-container" id="confettiContainer"></div>
 
-    <!-- ===== ОСНОВНАЯ КАРТОЧКА ===== -->
     <div class="invite-card" id="inviteCard">
       <div class="badge">✨ <span>Exclusive</span> ✨</div>
 
@@ -780,7 +762,6 @@
         </div>
       </div>
 
-      <!-- ===== ПОЛЕ ДЛЯ ИМЕНИ ===== -->
       <div class="name-input-wrapper">
         <label>👤 Твоё имя</label>
         <input
@@ -806,7 +787,6 @@
       <p class="footer-text">с любовью, Елизавета</p>
     </div>
 
-    <!-- ===== МИНИ-ЛЕНДИНГ ===== -->
     <div class="landing-page" id="landingPage">
       <div class="landing-card">
         <button class="landing-close" id="landingClose">✕</button>
@@ -842,8 +822,6 @@
       </div>
     </div>
 
-    <!-- ===== ПОДКЛЮЧАЕМ app.js ===== -->
-    <script src="config.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

@@ -1,0 +1,9 @@
+{
+  "name": "invitation-bot",
+  "version": "1.0.0",
+  "description": "Приглашение с Telegram ботом",
+  "main": "api/telegram.js",
+  "scripts": {
+    "start": "vercel dev"
+  }
+}

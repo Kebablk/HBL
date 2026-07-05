@@ -1,27 +1,14 @@
 (function () {
   "use strict";
 
-  // ===== TELEGRAM НАСТРОЙКИ =====
-  const BOT_TOKEN = window.ENV?.BOT_TOKEN || "{{BOT_TOKEN}}";
-  const CHAT_ID = window.ENV?.CHAT_ID || "{{CHAT_ID}}";
+  // ===== URL ТВОЕГО БЭКЕНДА НА VERCEL =====
+  // Замени после деплоя на свой URL
+  const API_URL = "/api/telegram"; // Работает если фронт и бэк на одном домене
+  // ИЛИ:
+  // const API_URL = "https://твой-проект.vercel.app/api/telegram";
+  // ========================================
 
-  const isTokenValid =
-    BOT_TOKEN &&
-    BOT_TOKEN !== "{{BOT_TOKEN}}" &&
-    BOT_TOKEN !== "YOUR_BOT_TOKEN_HERE" &&
-    BOT_TOKEN.length > 20;
-
-  const isChatIdValid =
-    CHAT_ID && CHAT_ID !== "{{CHAT_ID}}" && CHAT_ID !== "YOUR_CHAT_ID_HERE";
-
-  console.log(
-    "🔐 BOT_TOKEN:",
-    isTokenValid ? "✅ установлен" : "❌ не настроен",
-  );
-  console.log(
-    "🔐 CHAT_ID:",
-    isChatIdValid ? "✅ установлен" : "❌ не настроен",
-  );
+  console.log("🚀 Приложение запущено");
 
   // ===== КОНФЕТТИ =====
   const confettiContainer = document.getElementById("confettiContainer");
@@ -177,61 +164,32 @@
   const inviteCard = document.getElementById("inviteCard");
   const landingPage = document.getElementById("landingPage");
 
-  // ===== ОТПРАВКА В TELEGRAM =====
+  // ===== ОТПРАВКА ЧЕРЕЗ VERCEL БЭКЕНД =====
   async function sendToTelegram(name) {
-    const token = BOT_TOKEN;
-    const chatId = CHAT_ID;
-
-    // Проверяем, настроены ли токены
-    const isTokenConfigured =
-      token &&
-      token !== "{{BOT_TOKEN}}" &&
-      token !== "YOUR_BOT_TOKEN_HERE" &&
-      token.length > 20;
-
-    const isChatConfigured =
-      chatId && chatId !== "{{CHAT_ID}}" && chatId !== "YOUR_CHAT_ID_HERE";
-
-    if (!isTokenConfigured || !isChatConfigured) {
-      console.log("ℹ️ Telegram не настроен. Имя сохранено локально.");
-      console.log("👤 Имя гостя:", name);
-      console.log("💡 Создайте файл config.js с вашими токенами");
-      return true;
-    }
-
-    const message = `🎉 Новый гость подтвердил приход!\n\n👤 Имя: ${name}\n📅 Мероприятие: ДР Елизаветы 13.07.2026\n📍 Адрес: Северная ул. 302\n✨ Будет стильно!`;
-
     try {
-      const response = await fetch(
-        `https://api.telegram.org/bot${token}/sendMessage`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            chat_id: chatId,
-            text: message,
-            parse_mode: "HTML",
-            disable_web_page_preview: true,
-          }),
+      console.log("🚀 Отправка через Vercel...");
+
+      const response = await fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      );
+        body: JSON.stringify({ name: name }),
+      });
 
       const data = await response.json();
 
-      if (!data.ok) {
-        console.error("❌ Ошибка Telegram API:", data);
-        if (data.error_code === 404) {
-          console.error("⚠️ Бот не найден! Проверь токен.");
-        }
+      if (!response.ok) {
+        console.error("❌ Ошибка:", data.error);
+        alert(`❌ Ошибка: ${data.error}`);
         return false;
       }
 
-      console.log("✅ Сообщение отправлено в Telegram!");
+      console.log("✅ Сообщение отправлено!");
       return true;
     } catch (error) {
-      console.error("❌ Ошибка отправки в Telegram:", error);
+      console.error("❌ Ошибка:", error);
+      alert(`❌ Ошибка: ${error.message}`);
       return false;
     }
   }
@@ -287,10 +245,14 @@
     magicBtn.disabled = true;
     magicBtn.innerHTML = "<span>⏳ Отправка...</span>";
 
-    await sendToTelegram(guestName);
+    const sent = await sendToTelegram(guestName);
 
     magicBtn.disabled = false;
     magicBtn.innerHTML = "<span>✨ Я приду ✨</span>";
+
+    if (!sent) {
+      return;
+    }
 
     bigExplosion(80);
     if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
@@ -358,13 +320,5 @@
     setTimeout(() => {
       bigExplosion(30);
     }, 600);
-
-    // Проверяем наличие config.js
-    if (!window.ENV) {
-      console.warn(
-        "⚠️ Файл config.js не найден! Создайте его с вашими токенами.",
-      );
-      console.warn("💡 Используйте config.example.js как шаблон.");
-    }
   });
 })();
