@@ -1,16 +1,10 @@
 (function () {
   "use strict";
 
-  // ===== URL ТВОЕГО БЭКЕНДА НА VERCEL =====
-  // Замени после деплоя на свой URL
-  const API_URL = "https://hbl-cj1s.vercel.app/api/telegram"; // Работает если фронт и бэк на одном домене
-  // ИЛИ:
-  // const API_URL = "https://твой-проект.vercel.app/api/telegram";
-  // ========================================
+  const API_URL = "https://hbl-cj1s.vercel.app/api/telegram";
 
   console.log("🚀 Приложение запущено");
 
-  // ===== КОНФЕТТИ =====
   const confettiContainer = document.getElementById("confettiContainer");
   const colors = [
     "#818cf8",
@@ -78,7 +72,6 @@
     }
   }, 6000);
 
-  // ===== СЧЕТЧИК =====
   function updateDays() {
     const target = new Date("2026-07-13T00:00:00").getTime();
     const now = new Date().getTime();
@@ -88,7 +81,6 @@
   }
   updateDays();
 
-  // ===== СЕРДЦЕ/ЗВЕЗДА =====
   const heartEmoji = document.getElementById("heartEmoji");
   const heartContainer = document.getElementById("heartContainer");
   let heartTimeout = null;
@@ -146,7 +138,6 @@
     { passive: false },
   );
 
-  // ===== ПОЛЕ ВВОДА =====
   const guestNameInput = document.getElementById("guestNameInput");
 
   setTimeout(() => {
@@ -159,12 +150,10 @@
     }
   });
 
-  // ===== ОСНОВНАЯ КНОПКА =====
   const magicBtn = document.getElementById("magicBtn");
   const inviteCard = document.getElementById("inviteCard");
   const landingPage = document.getElementById("landingPage");
 
-  // ===== ОТПРАВКА ЧЕРЕЗ VERCEL БЭКЕНД =====
   async function sendToTelegram(name) {
     try {
       console.log("🚀 Отправка через Vercel...");
@@ -194,7 +183,6 @@
     }
   }
 
-  // ===== ВЗРЫВ =====
   function bigExplosion(count = 60) {
     for (let i = 0; i < count; i++) {
       const el = document.createElement("div");
@@ -269,7 +257,6 @@
     }, 400);
   });
 
-  // ===== ЛЕНДИНГ =====
   const landingClose = document.getElementById("landingClose");
 
   function closeLanding() {
@@ -282,7 +269,6 @@
     if (e.target === landingPage) closeLanding();
   });
 
-  // ===== СЮРПРИЗ =====
   const surpriseBtn = document.getElementById("surpriseBtn");
 
   surpriseBtn.addEventListener("click", function () {
@@ -315,7 +301,6 @@
     msg.style.background = "rgba(99, 102, 241, 0.03)";
   });
 
-  // ===== ПРИ ЗАГРУЗКЕ =====
   window.addEventListener("load", function () {
     setTimeout(() => {
       bigExplosion(30);

@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-  // Разрешаем только POST запросы
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Метод не разрешен" });
   }
@@ -11,7 +10,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Имя не указано" });
     }
 
-    // Токены берутся из переменных окружения Vercel
     const BOT_TOKEN = process.env.BOT_TOKEN;
     const CHAT_ID = process.env.CHAT_ID;
 
