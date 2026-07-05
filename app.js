@@ -3,7 +3,7 @@
 
   // ===== URL ТВОЕГО БЭКЕНДА НА VERCEL =====
   // Замени после деплоя на свой URL
-  const API_URL = "/api/telegram"; // Работает если фронт и бэк на одном домене
+  const API_URL = "https://hbl-cj1s.vercel.app/api/telegram"; // Работает если фронт и бэк на одном домене
   // ИЛИ:
   // const API_URL = "https://твой-проект.vercel.app/api/telegram";
   // ========================================
